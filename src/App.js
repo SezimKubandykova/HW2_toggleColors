@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class SquareColorToggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isRed: true,
+      isBlue: false,
+    };
+  }
+
+  handleClick = () => {
+    this.setState({
+      isRed: !this.state.isRed,
+      isBlue: !this.state.isBlue,
+    });
+  };
+
+  render() {
+    const { isRed, isBlue } = this.state;
+
+    const redSquareStyle = {
+      width: '100px',
+      height: '100px',
+      backgroundColor: isRed ? 'red' : 'blue',
+    };
+
+    const blueSquareStyle = {
+      width: '100px',
+      height: '100px',
+      backgroundColor: isBlue ? 'red' : 'blue',
+    };
+
+    return (
+      <div>
+        <button className='red'
+          style={redSquareStyle}
+          onClick={() => this.handleClick('isRed')}
+        ></button>
+        <button className='blue'
+          style={blueSquareStyle}
+          onClick={() => this.handleClick('isBlue')}
+        ></button>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default SquareColorToggle;
